@@ -2,6 +2,7 @@ from PIL import Image
 import pandas as pd
 import os
 import re
+import json
 
 def gps_to_pixels(latitude, longitude):
     x_pixel = int((longitude - min_longitude) * pixel_per_degree_lon)
@@ -29,6 +30,19 @@ files = os.listdir(folder_path)
 csv_path = 'scout data farm vineyard.csv'
 df = pd.read_csv(csv_path)
 
+with open('gpsMonitor.json') as f:
+    monitorData = json.load(f)
+
+bounds = monitorData["polygons"][0]["array"]
+
+min_longitude = min(bounds[::2])
+max_longitude = max(bounds[::2])
+min_latitude = min(bounds[1::2])
+max_latitude = max(bounds[1::2])
+
+lat_range = max_latitude - min_latitude
+lon_range = max_longitude - min_longitude
+
 for file_name in files:
     new_column_data = []
     image_path = folder_path + '/' + file_name
@@ -44,17 +58,8 @@ for file_name in files:
     heatmap_image = Image.open(image_path).convert('RGB')
     image_width, image_height = heatmap_image.size
 
-    # Hard coded values based on the target image
-    min_latitude = 34.04868655101289
-    max_latitude = 34.05009333955231
-    min_longitude = -117.82098084065237
-    max_longitude = -117.82029084239056
-
-    lat_range = max_latitude - min_latitude
-    lon_range = max_longitude - min_longitude
     pixel_per_degree_lat = image_height / lat_range
     pixel_per_degree_lon = image_width / lon_range
-
     
     # Convert the DataFrame to a CSV-formatted string
     csv_string = df.to_csv(index=False)
