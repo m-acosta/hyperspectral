@@ -1,4 +1,4 @@
-Latitude,Longitude,No.,Red %,NIR %,NDVI_Scan,chlorphyll reading ,"Visual Rating (1 healthy, 5 diseased)",MCARI,mND705,NDVI,PRI,RedEdgeRatio,WBI
+Latitude,Longitude,No.,Red %,NIR %,NDVI_Scan,chlorophyll  reading ,"Visual Rating (1 healthy, 5 diseased)",MCARI,mND705,NDVI,PRI,RedEdgeRatio,WBI
 34.04907091520727,-117.8200154,N=1,38,2,0.6,44.4,2,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0
 34.04903579503298,-117.820211,N=2,29,6,0.7,41.4,3,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0
 34.048998076468706,-117.8202968,N=3,11,4,0.7,11.9,5,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0

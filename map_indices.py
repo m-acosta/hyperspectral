@@ -27,7 +27,7 @@ def parse_gps_coordinates(gps_string):
 folder_path = './index_images'
 files = os.listdir(folder_path)
 
-csv_path = 'scout data farm vineyard.csv'
+csv_path = 'scout data farm vineyard august 2023.csv'
 df = pd.read_csv(csv_path)
 
 with open('gpsMonitor.json') as f:
@@ -82,6 +82,8 @@ for file_name in files:
 
         # Translate GPS coordinates to pixels
         x_pixel, y_pixel = gps_to_pixels(latitude, longitude)
+
+        # print(f"Latitude: {latitude}, Longitude: {longitude}, Pixels: {x_pixel}, {y_pixel}")
 
         if (x_pixel < image_width and y_pixel < image_height):
             r, g, b = heatmap_image.getpixel((x_pixel, y_pixel))
