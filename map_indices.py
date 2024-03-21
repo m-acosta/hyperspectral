@@ -67,23 +67,17 @@ for file_name in files:
     # Split the CSV-formatted string into lines
     csv_lines = csv_string.splitlines()
 
+    # Avoid the header lines
+    header_line = csv_lines.pop(0)
+
     # Iterate through the lines
     for line in csv_lines:
-        # Avoid the header lines
-        if line[0] != 'N':
-            continue
-
         fields = line.split(',')
-        raw_latitude = fields[0]
-        raw_longitude = fields[1]
-
-        latitude = parse_gps_coordinates(raw_latitude)
-        longitude = parse_gps_coordinates(raw_longitude)
+        latitude = float(fields[0])
+        longitude = float(fields[1])
 
         # Translate GPS coordinates to pixels
         x_pixel, y_pixel = gps_to_pixels(latitude, longitude)
-
-        # print(f"Latitude: {latitude}, Longitude: {longitude}, Pixels: {x_pixel}, {y_pixel}")
 
         if (x_pixel < image_width and y_pixel < image_height):
             r, g, b = heatmap_image.getpixel((x_pixel, y_pixel))

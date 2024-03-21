@@ -8,7 +8,7 @@ import spectral
 
 boxes = 'Yolo/multi_or_RGB.txt'
 img = 'Yolo/multi_or_RGB.png'
-mappings = 'gpsPixelMapping.txt'
+mappings = 'gpsMapping.txt'
 spectral_file = 'path to hdr file'
 output_path = 'Mappings/'
 
